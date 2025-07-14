@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Support Request - Medistar</title>
+    <link rel="icon" href="./Files/Medistar-logo-crop.jpeg">
+    <link rel="stylesheet" href="./Styles/nav.css">
+    <link rel="stylesheet" href="./Styles/footer.css">
+    <link rel="stylesheet" href="./css/all.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding-top: 80px;
+        }
+        
+        .support-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .support-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .support-header h1 {
+            color: #0b76c6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .support-form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .support-form label {
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .support-form input, 
+        .support-form textarea {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            background-color: #f8f8f8;
+        }
+        
+        .support-form textarea {
+            resize: vertical;
+            height: 150px;
+        }
+        
+        .submit-btn {
+            background-color: #0b76c6;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            align-self: flex-start;
+            transition: background-color 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background-color: #095ba1;
+        }
+
+        .back-to-dashboard {
+            margin-top: 1rem;
+            display: inline-block;
+            color: #0b76c6;
+            text-decoration: none;
+        }
+
+        .back-to-dashboard:hover {
+            text-decoration: underline;
+        }
+
+        .success-message {
+            display: none;
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <section id="navbar">
+        <!-- Navbar Imported -->
+    </section>
+    
+    <div class="support-container">
+        <div class="support-header">
+            <h1>Support Request</h1>
+            <p>Submit your support requests or report issues here.</p>
+        </div>
+        
+        <form class="support-form" id="supportForm">
+            <label for="issueTitle">Issue Title:</label>
+            <input type="text" id="issueTitle" required>
+            
+            <label for="issueDescription">Issue Description:</label>
+            <textarea id="issueDescription" required></textarea>
+            
+            <button type="submit" class="submit-btn">Submit Request</button>
+        </form>
+
+        <a href="./doctor-dashboard.html" class="back-to-dashboard">&#8592; Back to Dashboard</a>
+
+        <div class="success-message" id="successMessage">Thank you! Your request has been submitted.</div>
+    </div>
+    
+    <section id="footer">
+        <!-- Footer Imported -->
+    </section>
+    
+    <script type="module" src="./Scripts/navbar.js"></script>
+    <script type="module" src="./Scripts/footer.js"></script>
+    <script>
+        document.getElementById('supportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the support request to your server via AJAX
+            // For now, we'll just show a success message
+            document.getElementById('successMessage').style.display = 'block';
+            // Reset form fields
+            document.getElementById('issueTitle').value = '';
+            document.getElementById('issueDescription').value = '';
+        });
+    </script>
+</body>
+</html>
+

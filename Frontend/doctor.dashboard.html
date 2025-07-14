@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard - ITABAZA</title>
+    <link rel="icon" href="./Files/Medistar-logo-crop.jpeg">
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./Styles/doctor-dashboard.css">
+    <link rel="stylesheet" href="./Styles/responsive.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Doctor Dashboard Navigation -->
+    <nav class="doctor-nav">
+        <div class="nav-brand">
+            <img src="./Files/Medistar-logo-crop.jpeg" alt="ITABAZA" class="nav-logo">
+            <span class="nav-title">ITABAZA - Doctor Portal</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item active">
+                <a href="./doctor.dashboard.html" class="nav-link">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="./doctor.appointments.html" class="nav-link">
+                    <i class="fas fa-calendar-alt"></i> Appointments
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="./doctor.uploads.html" class="nav-link">
+                    <i class="fas fa-upload"></i> Documents
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="./doctor.support.html" class="nav-link">
+                    <i class="fas fa-headset"></i> Support Request
+                </a>
+            </li>
+        </ul>
+        <div class="nav-profile">
+            <div class="profile-info">
+                <span class="doctor-name" id="doctorName">Dr. Loading...</span>
+                <span class="doctor-email" id="doctorEmail">loading@email.com</span>
+            </div>
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Dashboard Content -->
+    <main class="dashboard-main">
+        <!-- Dashboard Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1>Welcome, <span id="welcomeDoctorName">Doctor</span></h1>
+                <p class="header-subtitle">Manage your appointments and patient care</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-primary" id="refreshBtn">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Stats -->
+        <section class="dashboard-stats">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="totalPatients">Loading...</h3>
+                    <p>Total Patients</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="todayAppointments">Loading...</h3>
+                    <p>Today's Appointments</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="pendingAppointments">Loading...</h3>
+                    <p>Pending Appointments</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="monthlyEarnings">Loading...</h3>
+                    <p>Monthly Earnings</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Content Grid -->
+        <section class="dashboard-content">
+            <!-- Recent Appointments -->
+            <div class="content-card appointments-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-calendar-alt"></i> Recent Appointments</h2>
+                    <a href="./doctor.appointments.html" class="view-all-link">View All</a>
+                </div>
+                <div class="card-content">
+                    <div class="appointments-list" id="recentAppointments">
+                        <div class="loading-spinner">
+                            <i class="fas fa-spinner fa-spin"></i> Loading appointments...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="content-card actions-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+                </div>
+                <div class="card-content">
+                    <div class="quick-actions">
+                        <button class="action-btn" id="viewTodaySchedule">
+                            <i class="fas fa-calendar-day"></i>
+                            <span>Today's Schedule</span>
+                        </button>
+                        <button class="action-btn" id="updateProfile">
+                            <i class="fas fa-user-edit"></i>
+                            <span>Update Profile</span>
+                        </button>
+                        <button class="action-btn" id="manageAvailability">
+                            <i class="fas fa-clock"></i>
+                            <span>Manage Availability</span>
+                        </button>
+                        <button class="action-btn" id="viewPatientHistory">
+                            <i class="fas fa-history"></i>
+                            <span>Patient History</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointment Analytics -->
+            <div class="content-card analytics-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-chart-bar"></i> Appointment Analytics</h2>
+                </div>
+                <div class="card-content">
+                    <canvas id="appointmentChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+
+            <!-- Notifications -->
+            <div class="content-card notifications-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-bell"></i> Notifications</h2>
+                </div>
+                <div class="card-content">
+                    <div class="notifications-list" id="notificationsList">
+                        <div class="notification-item">
+                            <i class="fas fa-info-circle text-info"></i>
+                            <span>Welcome to your doctor dashboard!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <p>&copy; 2024 ITABAZA Medical Platform. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="./Scripts/doctor.dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Login - ITABAZA</title>
+    <link rel="icon" href="./Files/Medistar-logo-crop.jpeg">
+    <link rel="stylesheet" href="./Styles/nav.css">
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./Styles/admin_login.css" />
+    <link rel="stylesheet" href="./Styles/footer.css">
+    <link rel="stylesheet" href="./Styles/responsive.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+</head>
+<body>
+    <section id="navbar">
+        <!-- Navbar Imported -->
+    </section> 
+
+    <div class="center">
+        <h1>Doctor Login</h1>
+        <form id="doctorLoginForm">
+            <div class="input_field">
+                <input id="doctorEmail" type="email" required />
+                <span></span>
+                <label>Enter Doctor Email</label>
+            </div>
+            <div class="input_field">
+                <input id="doctorPassword" type="password" required />
+                <span></span>
+                <label>Enter Password</label>
+            </div>
+            <div class="forgot_pass">
+                <a href="#" id="forgotPassword">Forgot Password?</a>
+            </div>
+            <input type="submit" value="Login" />
+            <div class="homelink">
+                Not a Doctor? <a href="./index.html">HomePage</a>
+            </div>
+            <div class="homelink">
+                <a href="./admin.login.html">Admin Login</a> | 
+                <a href="./login.html">Patient Login</a>
+            </div>
+        </form>
+    </div>
+
+    <section id="footer">
+        <!-- Footer Imported -->
+    </section>
+
+    <script type="module" src="./Scripts/doctor.login.js"></script>
+    <script type="module" src="./Scripts/navbar.js"></script>
+    <script type="module" src="./Scripts/footer.js"></script>
+</body>
+</html>
