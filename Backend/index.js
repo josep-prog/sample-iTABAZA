@@ -6,35 +6,24 @@ const nodemailer = require("nodemailer");
 const app = express();
 app.use(express.json());
 
-// Dynamic CORS configuration for flexible deployment
-const getAllowedOrigins = () => {
-    const defaultOrigins = [
-        'http://localhost:3000',
-        'http://127.0.0.1:3000',
-        'http://0.0.0.0:3000'
-    ];
-    
-    // Add server-specific origins
-    const serverHost = process.env.SERVER_HOST || 'localhost';
-    const serverOrigins = [
-        `http://${serverHost}:3000`,
-        `http://${serverHost}:8080`,
-        `http://${serverHost}`,
-        `https://${serverHost}:3000`,
-        `https://${serverHost}:8080`,
-        `https://${serverHost}`
-    ];
-    
-    // Parse additional origins from environment
-    const additionalOrigins = process.env.ALLOWED_ORIGINS 
-        ? process.env.ALLOWED_ORIGINS.split(',').map(origin => origin.trim())
-        : [];
-    
-    return [...defaultOrigins, ...serverOrigins, ...additionalOrigins];
-};
+
+const allowedOrigins = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    `http://${process.env.SERVER_HOST || 'localhost'}:3000`,
+    `https://${process.env.SERVER_HOST || 'localhost'}:3000`,
+    `http://${process.env.SERVER_HOST || 'localhost'}:8080`,
+    `https://${process.env.SERVER_HOST || 'localhost'}:8080`,
+];
 
 app.use(cors({
-    origin: getAllowedOrigins(),
+    origin: function (origin, callback) {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
     optionsSuccessStatus: 200,
     allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
@@ -131,14 +120,12 @@ app.get('/test-supabase', async (req, res) => {
 const PORT = process.env.PORT || 8080;
 const HOST = process.env.SERVER_HOST || 'localhost';
 
-app.listen(PORT, '0.0.0.0', async () => {
+app.listen(PORT, HOST, async () => {
   try {
     console.log("Connected to Supabase");
     console.log(`Server listening at http://${HOST}:${PORT}`);
-    console.log(`Server accessible at: http://0.0.0.0:${PORT}`);
     console.log('Server is up and running with necessary routes!');
     console.log('Environment:', process.env.NODE_ENV || 'development');
-    console.log('Allowed CORS origins:', getAllowedOrigins());
   } catch (error) {
     console.log("Error connecting to database:", error);
   }
