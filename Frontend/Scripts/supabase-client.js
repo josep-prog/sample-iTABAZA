@@ -1,24 +1,9 @@
 // Supabase Client Configuration for Real-time Features
 import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js';
 
-// Dynamic Supabase configuration for flexible deployment
-const getSupabaseConfig = () => {
-    // Try to get from environment variables (if available in build process)
-    const envUrl = typeof process !== 'undefined' && process.env ? process.env.SUPABASE_URL : null;
-    const envKey = typeof process !== 'undefined' && process.env ? process.env.SUPABASE_ANON_KEY : null;
-    
-    // Fallback to window config (can be set by server-side rendering)
-    const windowConfig = typeof window !== 'undefined' ? window.SUPABASE_CONFIG : null;
-    
-    return {
-        url: envUrl || (windowConfig && windowConfig.url) || 'YOUR_SUPABASE_URL',
-        anonKey: envKey || (windowConfig && windowConfig.anonKey) || 'YOUR_SUPABASE_ANON_KEY'
-    };
-};
-
-const config = getSupabaseConfig();
-const supabaseUrl = config.url;
-const supabaseAnonKey = config.anonKey;
+// Supabase configuration
+const supabaseUrl = 'YOUR_SUPABASE_URL';
+const supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY';
 
 // Create Supabase client
 const supabase = createClient(supabaseUrl, supabaseAnonKey);

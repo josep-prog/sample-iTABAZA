@@ -311,7 +311,7 @@ async function sendEnhancedConfirmationEmail(patientEmail, patientFirstName, doc
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: patientEmail,
-    subject: `Medistar ${consultationTypeText} Appointment Confirmation`,
+    subject: `iTABAZA ${consultationTypeText} Appointment Confirmation`,
     html: `
     <!DOCTYPE html>
       <html>
@@ -324,7 +324,7 @@ async function sendEnhancedConfirmationEmail(patientEmail, patientFirstName, doc
           <table style="width: 100%; max-width: 600px; margin: 0 auto; background-color: #fff; border-collapse: collapse; border: 1px solid #ddd;">
             <tr>
               <td style="background-color: #0077c0; text-align: center; padding: 20px;">
-                <h1 style="font-size: 28px; color: #fff; margin: 0;">MEDISTAR HOSPITALS</h1>
+                <h1 style="font-size: 28px; color: #fff; margin: 0;">iTABAZA</h1>
                 <p style="color: #fff; margin: 5px 0 0 0;">Healthcare Excellence</p>
               </td>
             </tr>
@@ -382,13 +382,13 @@ async function sendEnhancedConfirmationEmail(patientEmail, patientFirstName, doc
                 `}
                 
                 <p style="margin-bottom: 20px;">If you have any questions or need to reschedule, please contact our customer service team.</p>
-                <p style="margin-bottom: 20px;">Thank you for choosing Medistar Hospitals!</p>
+                <p style="margin-bottom: 20px;">Thank you for choosing iTABAZA!</p>
                 
                 <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
                   <p style="margin: 0; color: #666; font-size: 14px;">
                     Best regards,<br>
-                    <strong>Medistar Hospitals Team</strong><br>
-                    Email: support@medistar.com<br>
+                    <strong>iTABAZA Team</strong><br>
+                    Email: support@itabaza.com<br>
                     Phone: +250 123 456 789
                   </p>
                 </div>

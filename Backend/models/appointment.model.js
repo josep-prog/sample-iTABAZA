@@ -143,11 +143,11 @@ const AppointmentModel = {
   },
 
   // Get appointments by consultation type and patient
-  async findByTypeAndPatient(consultationType, patientId) {
+  async findByTypeAndPatient(appointmentType, patientId) {
     const { data, error } = await supabase
       .from(TABLE_NAME)
       .select('*')
-      .eq('consultation_type', consultationType)
+      .eq('consultation_type', appointmentType)
       .eq('patient_id', patientId)
       .order('created_at', { ascending: false });
     
@@ -172,7 +172,7 @@ const AppointmentModel = {
   async getStatistics() {
     const { data, error } = await supabase
       .from(TABLE_NAME)
-      .select('status, payment_status, consultation_type, payment_amount');
+      .select('status, payment_status, appointmentType, payment_amount');
     
     if (error) throw error;
     
@@ -181,8 +181,8 @@ const AppointmentModel = {
     const completed = data.filter(app => app.status).length;
     const paid = data.filter(app => app.payment_status).length;
     const unpaid = data.filter(app => !app.payment_status).length;
-    const videoCalls = data.filter(app => app.consultation_type === 'video-call').length;
-    const inPerson = data.filter(app => app.consultation_type === 'in-person').length;
+    const videoCalls = data.filter(app => app.appointmentType === 'video-call').length;
+    const inPerson = data.filter(app => app.appointmentType === 'in-person').length;
     const totalRevenue = data
       .filter(app => app.payment_status && app.payment_amount)
       .reduce((sum, app) => sum + parseFloat(app.payment_amount || 0), 0);

@@ -33,7 +33,7 @@ userRouter.post("/emailVerify", async (req, res) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: email,
-    subject: "Here is your OTP for Medistar Login",
+    subject: "Here is your OTP for iTABAZA Login",
     text: otp,
   };
 

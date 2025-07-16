@@ -14,6 +14,12 @@ async function fetchMessages() {
 
   const output = document.getElementById('output')
 
+  // Check if output element exists before trying to use it
+  if (!output) {
+    console.warn('⚠️ Element with id "output" not found in the DOM')
+    return
+  }
+
   if (error) {
     console.error('❌ Error:', error)
     output.textContent = '❌ Failed to load data.'

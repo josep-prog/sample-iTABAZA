@@ -1,6 +1,6 @@
 {
-  "name": "Itabaza",
-  "short_name": "Itabaza",
+  "name": "iTABAZA",
+  "short_name": "iTABAZA",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -12,7 +12,7 @@
       "type": "image/x-icon"
     },
     {
-      "src": "./Files/Medistar-logo-crop.jpeg",
+      "src": "./Files/iTABAZA-logo.png",
       "sizes": "192x192",
       "type": "image/jpeg"
     }

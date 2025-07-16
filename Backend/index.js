@@ -4,26 +4,11 @@ require("dotenv").config();
 const nodemailer = require("nodemailer");
 
 const app = express();
-app.use(express.json());
-
-
-const allowedOrigins = [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    `http://${process.env.SERVER_HOST || 'localhost'}:3000`,
-    `https://${process.env.SERVER_HOST || 'localhost'}:3000`,
-    `http://${process.env.SERVER_HOST || 'localhost'}:8080`,
-    `https://${process.env.SERVER_HOST || 'localhost'}:8080`,
-];
-
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
+// Configure CORS for frontend running on port 3000
 app.use(cors({
-    origin: function (origin, callback) {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://0.0.0.0:3000'],
     credentials: true,
     optionsSuccessStatus: 200,
     allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
@@ -116,16 +101,11 @@ app.get('/test-supabase', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-// Enhanced server configuration for flexible deployment
-const PORT = process.env.PORT || 8080;
-const HOST = process.env.SERVER_HOST || 'localhost';
-
-app.listen(PORT, HOST, async () => {
+app.listen(process.env.PORT || 8080, async () => {
   try {
     console.log("Connected to Supabase");
-    console.log(`Server listening at http://${HOST}:${PORT}`);
+    console.log(`Server listening at ${process.env.PORT || 8080}`);
     console.log('Server is up and running with necessary routes!');
-    console.log('Environment:', process.env.NODE_ENV || 'development');
   } catch (error) {
     console.log("Error connecting to database:", error);
   }

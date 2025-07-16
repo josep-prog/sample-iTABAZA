@@ -5,7 +5,7 @@ document.querySelector("#navbar").innerHTML = `
     </div>
     <div data-aos="zoom-out" data-aos-duration="1000" id="nav-logo">
         <div id="nav-img">
-            <img alt="Logo" src="./Files/MEDSTAR-no-bg.png"/>
+                        <img alt="Logo" src="./Files/iTABAZA-logo.png"/>
         </div>
     </div>
     <div data-aos="zoom-out" data-aos-duration="1000" id="nav-menu">
